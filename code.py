@@ -127,32 +127,100 @@ class FreightM(Marine):
 
 class Ground(Transport):
     '''
+    The engine size for the Bicycle is zero
     '''
-
+    
+    def __init__(self,color:str,num_of_passenger:int,maxspeed:float,number_of_wheels:int,engine_size:float):
+        super().__init__()
+        self.__color = color #Encapsulation
+        self.num_of_passenger = num_of_passenger
+        self._maxspeed = maxspeed #Encapsulation
+        self.number_of_wheels = number_of_wheels
+        self.engine_size = engine_size
+        self.place = 'On the ground'
+        
     def color(self):
         return self.__color
         
     def change_color(self,new_color):
         self.__color = new_color
         print('The color changed...')
-
+    
+    def wash(self):
+        print('Washing was done successfully.')
+    
+    def park(self):
+        print('Your vehicle is parked')
     
     @abstractmethod
-    def place(self):
+    def start(self):
         pass
-    pass
 
 class Car(Ground):
     
-    pass
+    travelـdistance = 0
+    oil = '5 liters'
+    fuel = '60 liters'
+
+    def specify_travelـdistance (self,specifyed_travelـdistance:int):
+        '''
+
+        Parameters
+        ----------
+        travelـdistance : int
+            Km.
+
+        Returns
+        -------
+        None.
+
+        '''
+        self.travelـdistance = specifyed_travelـdistance
+    
+    def start(self): #Polymorphism
+        print('Your car is ready...')
+        
+    def check_the_oil(self):
+        print('You must first run «specify_travelـdistance» ,If you did this is the result: ')
+        if self.travelـdistance <= 5000 :
+            print('No need to change the oil')
+        else:
+            print('Change the oil')
+        self.travelـdistance = 0
+    
+    def fuel_in_tank(self,distance):
+        if distance/100*7 < 60:
+            print(f'The fuel in tank is : {60 - distance/100*7}')
+        else:
+            print('The tank is empty...')
 
 class Motorcycle(Ground):
     
-    pass
+    weight = '113 KG'
+    fuel = '10 liters'
+    
+    def honking(self):
+        print('Beeb')
+    
+    def braking(self):
+        print('It stoped')
+        
+    def start(self): #Polymorphism
+        print('Your motorcycle is ready...')
 
 class Bicycle(Ground):
     
-    pass
+    weight = '8.8 KG'
+    bicycle_size = 'It depends on the age of the user'
+
+    def specify_bicycle_size(self,inch:float):
+        self.bicycle_size = inch
+        
+    def pedaling(self):
+        print('Your speed is increasing')
+    
+    def start(self): #Polymorphism
+        print('Your bicycle is ready...')
     
     
     
