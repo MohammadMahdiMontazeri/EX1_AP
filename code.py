@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
+import time
 
 
-class Transport(ABC):
+class Transport(ABC): #Abstraction
 
     def __init__(self):
         self.fuel = 'Petrol, diesel and gas'
@@ -27,6 +28,8 @@ class Transport(ABC):
     def specify_the_price_of_ticket(self,specified_price_of_ticket:int):
         self.price_of_ticket = specified_price_of_ticket       
         
+
+
 class Marine(Transport):
     '''
     Weight is based on tons.
@@ -92,7 +95,6 @@ class Recreational(Marine):
         
         return int(end[8:10])-int(start[8:10]) + (int(end[5:7])-int(start[5:7]))*30 + (int(end[0:4])-int(start[0:4]))*360
             
-    
 class FreightM(Marine):
     
     travelـdistance = 0
@@ -226,8 +228,47 @@ class Bicycle(Ground):
     
 class Air(Transport):
     '''
+    Weight is based on tons. 
     '''
     
+    def __init__(self,color:str,weight:float,num_of_passenger:int,maxspeed:float):
+        super().__init__()
+        self.__color = color #Encapsulation
+        self.weight = weight
+        self.num_of_passenger = num_of_passenger
+        self._maxspeed = maxspeed #Encapsulation
+        self.place = 'Oin the sky'
+    
+    def take_off(self):
+        print('The plane took off successfully.')
+        
+    def Landing(self):
+        print('The plane landed successfully.')
+        
+    def changing_the_altitude(self,first_altitude:float,delta:float,direction:str):
+        '''
+        Parameters
+        ----------
+        first_altitude : float
+        delta : float
+        direction : str
+            'up' or 'down'.
+
+        Returns
+        -------
+        None.
+
+        '''
+        
+        print('Now the plane is at an altitude of ',end='')
+        if direction == 'up' :
+            print(first_altitude + delta)
+        elif direction == 'down' :
+            print(first_altitude - delta)
+        else:
+            print('...!')
+            print('Check the direction argument')
+
     def color(self):
         return self.__color
         
@@ -235,23 +276,79 @@ class Air(Transport):
         self.__color = new_color
         print('The color changed...')
 
-    
-    @abstractmethod
-    def place(self):
-        pass
-
 class Civil(Air):
+
+    number_of_pilots = 2
+    number_of_engines = 4
+    length = '73 m'
+   
+    def flightـcrew(self):
+        print('The flight crew is ready.')    
+   
+    def boarding(self):
+        print('Passengers boarded and the plane is ready to take off.')
     
-    pass
+    def AirـTrafficـControlـTower(self):
+        print('Permission to take off was issued.')
 
 class PrivateJet(Air):
     
-    pass
+    price = '2 - 125 million dollars'
+    number_of_pilots = 2
+    propulsion = 'engine or propeller'
 
-class military(Air):
+    def start(self):
+        print('Your jet is ready')
+
+    def refueling(self):
+        print('Please wait a moment')
+        for i in range(1,11):
+            print(i*'.')
+            time.sleep(1)
+        time.sleep(1)
+        print('Refueling was done')
     
-    pass
+    def wash(self):
+        print('Your jet has been cleaned')
 
+class Military(Air):
+     
+    tankـcapacity = '280 Liters'
+    bomb = 50
+    maximum_flight_height = '85000 ft'
+
+    def shoot(self):
+        print('The bomb was thrown.')
+    
+    def Changing_Direction(self):
+        print('Please wait a moment...')
+        for i in range(3):
+            print('|')
+            time.sleep(1)
+            
+        print(' ',end='')
+        for i in range(8):
+            print('-',end='')
+            time.sleep(1)
+        print('')    
+        time.sleep(1)
+        print('Changing direction was done.')
+    
+    def eject(self):
+        print('The pilot ejected successfully.')
+    
 class FreightA(Air):
     
-    pass
+    load_capacity = '250 tons'
+    number_of_engines = 6
+    length = '84 m'
+   
+    def Loading(self):
+        print('Loading done.')
+    
+    def unloading(self):
+        print('Unloading done.')
+    
+    def start(self):
+        print('Everything is ok , ready to take off')
+    
