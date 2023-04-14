@@ -57,6 +57,35 @@ class Marine(Transport):
     def type_of_ship(self):
         pass
 
+class Person:
+    '''
+    sex : male or female
+    '''
+    
+    def __init__(self,age:int,sex:str,height:float,weight:float,degree:str):
+        self.age = age
+        self.sex = sex
+        self.height = height
+        self.weight = weight
+        self.degree = degree
+    
+    def rest(self):
+        if self.sex == 'male' :
+            print('He is resting.') 
+        else:
+            print('She is resting.') 
+    
+    def cleaning(self):
+        if self.sex == 'male' :
+            print('He is cleaning.') 
+        else:
+            print('She is cleaning.') 
+        
+    def anchor(self):
+        print('anchoring done...')
+
+crew = Person(25,'male',180,80,'Bachelor s degree')
+
 class Recreational(Marine):
     # Class attributes:
         
@@ -64,6 +93,11 @@ class Recreational(Marine):
     num_of_engine = 8
     power_of_engine = '110k Hp'
     
+    def __init__(self, color: str, weight: float, num_of_passenger: int, maxspeed: float ,crew : object):
+        super().__init__(color, weight, num_of_passenger, maxspeed)
+
+        self.crew = crew # Aggregation
+
     def type_of_ship(self): #Polymorphism
         print('This is a recreational ship.')
 
@@ -94,7 +128,14 @@ class Recreational(Marine):
             return 'The end date of the journey cannot be before the beginning'
         
         return int(end[8:10])-int(start[8:10]) + (int(end[5:7])-int(start[5:7]))*30 + (int(end[0:4])-int(start[0:4]))*360
-            
+        
+    def crew_working(self):
+        self.crew.anchor()
+        time.sleep(3)
+        self.crew.cleaning()
+        time.sleep(3)
+        self.crew.rest()
+
 class FreightM(Marine):
     
     travelـdistance = 0
@@ -159,7 +200,7 @@ class Ground(Transport):
         pass
 
 
-class Engine():
+class Engine:
 
     def __init__(self,engine_size:float,num_of_cylinders:int,material:str,type_of_cylinder_block:str,internal_or_external_combustion_engine:str):
         self.engine_size = engine_size
