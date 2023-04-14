@@ -46,7 +46,7 @@ class Marine(Transport):
     def color(self):
         return self.__color
         
-    def change_color(self,new_color):
+    def change_color(self,new_color:str):
         self.__color = new_color
         print('The color changed...')
 
@@ -67,7 +67,7 @@ class Person:
         self.sex = sex
         self.height = height
         self.weight = weight
-        self.degree = degree
+        self.__degree = degree #Encapsulation
     
     def rest(self):
         if self.sex == 'male' :
@@ -96,7 +96,7 @@ class Recreational(Marine):
     def __init__(self, color: str, weight: float, num_of_passenger: int, maxspeed: float ,crew : object):
         super().__init__(color, weight, num_of_passenger, maxspeed)
 
-        self.crew = crew # Aggregation
+        self.crew = crew #Aggregation
 
     def type_of_ship(self): #Polymorphism
         print('This is a recreational ship.')
@@ -185,7 +185,7 @@ class Ground(Transport):
     def color(self):
         return self.__color
         
-    def change_color(self,new_color):
+    def change_color(self,new_color:str):
         self.__color = new_color
         print('The color changed...')
     
@@ -268,7 +268,7 @@ class Car(Ground):
             print('Change the oil')
         self.travelـdistance = 0
     
-    def fuel_in_tank(self,distance):
+    def fuel_in_tank(self,distance:float):
         if distance/100*7 < 60:
             print(f'The fuel in tank is : {60 - distance/100*7}')
         else:
@@ -350,7 +350,7 @@ class Air(Transport):
     def color(self):
         return self.__color
         
-    def change_color(self,new_color):
+    def change_color(self,new_color:str):
         self.__color = new_color
         print('The color changed...')
 
@@ -366,7 +366,7 @@ class Civil(Air):
     def boarding(self):
         print('Passengers boarded and the plane is ready to take off.')
     
-    def AirـTrafficـControlـTower(self):
+    def airـtrafficـcontrolـtower(self):
         print('Permission to take off was issued.')
 
 class PrivateJet(Air):
@@ -398,7 +398,7 @@ class Military(Air):
     def shoot(self):
         print('The bomb was thrown.')
     
-    def Changing_Direction(self):
+    def changing_direction(self):
         print('Please wait a moment...')
         for i in range(3):
             print('|')
@@ -421,7 +421,7 @@ class FreightA(Air):
     number_of_engines = 6
     length = '84 m'
    
-    def Loading(self):
+    def loading(self):
         print('Loading done.')
     
     def unloading(self):
