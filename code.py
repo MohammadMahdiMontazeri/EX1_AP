@@ -158,12 +158,49 @@ class Ground(Transport):
     def start(self):
         pass
 
+
+class Engine():
+
+    def __init__(self,engine_size:float,num_of_cylinders:int,material:str,type_of_cylinder_block:str,internal_or_external_combustion_engine:str):
+        self.engine_size = engine_size
+        self.num_of_cylinders = num_of_cylinders
+        self.material = material
+        self.type_of_cylinder_block = type_of_cylinder_block
+        self.internal_or_external_combustion_engine = internal_or_external_combustion_engine
+
+    def entering_petrol(self):
+        print('Entering petrol was successful.')
+        time.sleep(1)
+
+    def discharge_petrol(self):
+        print('Discharge petrol was successful.')
+        time.sleep(1)
+
+    def spark_lug(self):
+        print('Spark plug is working...')
+        time.sleep(1)
+
 class Car(Ground):
     
     travelـdistance = 0
     oil = '5 liters'
     fuel = '60 liters'
 
+    def __init__(self, color: str, num_of_passenger: int, maxspeed: float, number_of_wheels: int, engine_size: float,num_of_cylinders:int,material:str,type_of_cylinder_block:str,internal_or_external_combustion_engine:str):
+        super().__init__(color, num_of_passenger, maxspeed, number_of_wheels, engine_size)
+        
+        self.engine_size = engine_size
+        self.num_of_cylinders = num_of_cylinders
+        self.material = material
+        self.type_of_cylinder_block = type_of_cylinder_block
+        self.internal_or_external_combustion_engine = internal_or_external_combustion_engine
+        self.obj_engine = Engine(self.engine_size,self.num_of_cylinders,self.material,self.type_of_cylinder_block,self.internal_or_external_combustion_engine) #Composition
+
+    def check_the_engine(self):
+        self.obj_engine.entering_petrol()
+        self.obj_engine.spark_lug()  
+        self.obj_engine.discharge_petrol()
+          
     def specify_travelـdistance (self,specifyed_travelـdistance:int):
         '''
 
